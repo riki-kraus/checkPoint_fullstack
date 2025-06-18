@@ -3,14 +3,12 @@ import { Component, OnInit, signal, HostListener, computed } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth-service.service';
-import { of } from 'rxjs';
-import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,RouterModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
