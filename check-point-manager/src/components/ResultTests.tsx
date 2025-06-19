@@ -34,8 +34,10 @@ const ResultTests = () => {
           const exam = extractExam(words);
 
           const savedExam = await ExamService.create(exam);
-
+console.log("yay")
           const answers = extractAnswers(words, savedExam);
+          console.log("answers:", answers);
+
           await Promise.all(
             answers.map((a) =>
               AnswerService.create(a).catch((e) => {

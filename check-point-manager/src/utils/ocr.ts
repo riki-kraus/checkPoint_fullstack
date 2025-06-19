@@ -54,6 +54,7 @@ export const extractStudent=(res:any)=>
   
 }
   export const extractAnswers = (words: any[], exam: Exam | undefined) => {
+    console.log("hi")
     const textArray = words.map(w => w.description);
     const results = [];
 
