@@ -70,6 +70,7 @@ export const extractStudent=(res:any)=>
         });
       }
     }
+    console.log("Extracted answers:", results);
     return results;
   };
 
