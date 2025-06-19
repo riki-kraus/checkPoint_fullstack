@@ -5,6 +5,7 @@ import { NotificationService } from "./NotificationService";
 export const StudentSheetService = {
 
     getStudentEmail: async (firstName: string, lastName: string, className: string) => {
+        console.log("Fetching email for:", firstName, lastName, className);
         try {
             const res = await axiosInstance.get(`/Sheet/email`, {
                 params: {

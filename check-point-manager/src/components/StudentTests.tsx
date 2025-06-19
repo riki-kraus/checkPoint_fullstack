@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef, useMemo } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { AnswerService } from "../services/answerService";
 import { ExamService } from "../services/examService";
@@ -23,7 +23,18 @@ const StudentTests = () => {
   const [currentProcessing, setCurrentProcessing] = useState<string>("");
   const [unregisteredStudents, setUnregisteredStudents] = useState<{ firstName: string, lastName: string }[]>([]);
   const [hasError, setHasError] = useState<boolean>(false);
+  
 
+  const uniqueUnregisteredStudents = useMemo(() => {
+    return unregisteredStudents.filter(
+      (student, index, self) =>
+        index === self.findIndex(
+          (s) =>
+            s.firstName.trim().toLowerCase() === student.firstName.trim().toLowerCase() &&
+            s.lastName.trim().toLowerCase() === student.lastName.trim().toLowerCase()
+        )
+    );
+  }, [unregisteredStudents]);
   // מנע ריצה כפולה בו-זמנית
   const isProcessingRef = useRef(false);
   useEffect(() => {
@@ -261,7 +272,9 @@ const StudentTests = () => {
             </div>
           </div>
         ) : hasError && unregisteredStudents.length > 0 ? (
-          <UnregisteredStudentMessage students={unregisteredStudents} />
+          // <UnregisteredStudentMessage students={unregisteredStudents} />
+          <UnregisteredStudentMessage students={uniqueUnregisteredStudents} />
+            
         ) : averageMark !== null ? (
           <div className="completion-container">
             <div className="success-icon">
@@ -284,8 +297,5 @@ const StudentTests = () => {
 };
 
 export default StudentTests;
-
-
-
 
 
