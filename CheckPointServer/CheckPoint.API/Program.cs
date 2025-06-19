@@ -41,12 +41,18 @@ builder.Services.AddOpenApi();
 builder.Services.AddDependencyInjectoions();
 builder.Services.AddSwagger();
 
-builder.Services.AddDbContext<DataContext>(options =>
+//builder.Services.AddDbContext<DataContext>(options =>
+//{
+//    var configuration = builder.Configuration;
+//    var connectionString = configuration.GetConnectionString("CheckPointDB");
+//    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+//}, ServiceLifetime.Scoped); // <-- חשוב מאוד
+builder.Services.AddDbContextPool<DataContext>(options =>
 {
     var configuration = builder.Configuration;
     var connectionString = configuration.GetConnectionString("CheckPointDB");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-}, ServiceLifetime.Scoped); // <-- חשוב מאוד
+});
 
 // הוספת Authentication ו Authorization
 builder.AddJwtAuthentication();
@@ -69,14 +75,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MyCorsPolicy", builder =>
     {
         builder
-            .WithOrigins("http://localhost:5173", "https://checkpoint-manager.onrender.com", "https://checkpoint-client-pi2r.onrender.com")  // ה-origin של ה-client שלך
+            .WithOrigins("http://localhost:5173", "http://localhost:4200", "https://checkpoint-manager.onrender.com", "https://checkpoint-client-pi2r.onrender.com")  // ה-origin של ה-client שלך
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials();  // חובה לאפשר credentials
+            .AllowCredentials();  // חובה לאפשר credentials          
     });
 });
 builder.Services.AddSignalR();
-
 var app = builder.Build();
 
 // הפעלת CORS עם המדיניות המתאימה
