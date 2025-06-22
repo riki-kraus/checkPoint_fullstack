@@ -5,29 +5,66 @@ import { Exam, Student } from "../Types";
 
 
 
+// export const extractExam = (words: any[]): Exam => {
+//     const getText = (start: number, count: number) =>
+//       words.slice(start, start + count).map(w => w.description).join(" ");
+
+//     const dateIdx = words.findIndex(w => w.description === "תאריך");
+//     const subjectIdx = words.findIndex(w => w.description === "מקצוע");
+
+//     if (dateIdx === -1 || subjectIdx === -1) {
+//       throw new Error("שדות חיוניים חסרים");
+//     }
+
+//     const dateExam = getText(dateIdx + 2, 4).replace(/([א-ת])\s'/, "$1'"); // הוספתי כאן את dateExam
+
+//     return {
+//       dateExam,
+//       subject: getText(subjectIdx + 2, 2),
+//       file_Url_Exam: `exams/results/${(getText(subjectIdx + 2, 2))}/${(dateExam)}.jpg` // המרה לפורמט URL
+//     };
+// };
 export const extractExam = (words: any[]): Exam => {
-    const getText = (start: number, count: number) =>
-      words.slice(start, start + count).map(w => w.description).join(" ");
+  const getText = (start: number, end: number) =>
+    words.slice(start, end).map(w => w.description).join(" ");
 
-    const dateIdx = words.findIndex(w => w.description === "תאריך");
-    const subjectIdx = words.findIndex(w => w.description === "מקצוע");
+  const dateIdx = words.findIndex(w => w.description === "תאריך");
+  const subjectIdx = words.findIndex(w => w.description === "מקצוע");
 
-    if (dateIdx === -1 || subjectIdx === -1) {
-      throw new Error("שדות חיוניים חסרים");
-    }
+  if (dateIdx === -1 || subjectIdx === -1) {
+    throw new Error("שדות חיוניים חסרים");
+  }
 
-    const dateExam = getText(dateIdx + 2, 4).replace(/([א-ת])\s'/, "$1'"); // הוספתי כאן את dateExam
+  const subject = getText(subjectIdx + 2, dateIdx).trim();
+  const dateExam = getText(dateIdx + 2, dateIdx + 6).replace(/([א-ת])\s'/, "$1'");
 
-    return {
-      dateExam,
-      subject: getText(subjectIdx + 2, 2),
-      file_Url_Exam: `exams/results/${(getText(subjectIdx + 2, 2))}/${(dateExam)}.jpg` // המרה לפורמט URL
-    };
+  return {
+    dateExam,
+    subject,
+    file_Url_Exam: `exams/results/${subject}/${dateExam}.jpg`
+  };
 };
 
-  const findSectionLetter = (arr: string[], from: number) =>
-    arr.slice(0, from + 1).reverse().find(val => /^[א-ת]$/.test(val)) || "?";
 
+  const findSectionLetter = (arr: string[], from: number): string => {
+    const reversed = arr.slice(0, from + 1).reverse();
+  
+    for (let i = 0; i < reversed.length - 1; i++) {
+      const val = reversed[i];
+      const next = reversed[i - 1];
+
+      if (/^[א-ת]$/.test(val) && next === ".") {
+        // if (/^[א-ת]$/.test(val) ) {
+console.log("val",val);
+console.log("next",next);
+
+        return val;
+      }
+    }
+  
+    return "?";
+  };
+  
 export const extractStudent=(res:any)=>
 { 
   let firstName = "";
@@ -64,6 +101,9 @@ export const extractStudent=(res:any)=>
         if (['/', '^', '\\', '|'].includes(correctAnswer)) correctAnswer = '1';
         if (correctAnswer === 's') correctAnswer = '5';
         const examId = exam?.id;
+        console.log("textArray")
+        console.log(textArray)
+
         results.push({
           examId,
           section: findSectionLetter(textArray, i),

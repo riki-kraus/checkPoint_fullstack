@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from 'react';
 import { Bell, Check, CheckCircle, Info, AlertTriangle, Trash2, X } from 'lucide-react';
 import '../styles/AdminNotifications.css';
-import { useSignalR } from './SignalRService';
+import { useSignalR } from '../services/SignalRService';
 import { NotificationAdmin, NotificationType } from '../Types';
 
 

@@ -46,7 +46,7 @@
 // }
 import { useEffect, useRef } from "react";
 import { HubConnectionBuilder, HubConnection, LogLevel } from "@microsoft/signalr";
-import { NotificationService } from "../services/NotificationService";
+import { NotificationService } from "./NotificationService";
 import { NotificationAdmin } from "../Types";
 
 // interface Notification1 {

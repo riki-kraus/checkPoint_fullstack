@@ -50,6 +50,7 @@ namespace CheckPoint.Data.Repositories
                 foreach(var a in answers)
                 _context.Answers.Remove(a);
 
+
             }
 
 

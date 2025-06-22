@@ -66,6 +66,7 @@ const StudentTests = () => {
           const tempExam = extractExam(words);
           const exam = await ExamService.getBySubjectAndDate(tempExam.dateExam, tempExam.subject);
           const answers = extractAnswers(words, exam);
+          console.log(words);
           const student = extractStudent(words);
           const fetchedAnswers = await AnswerService.getByExamId(exam.id);
           let newMark = 100;
