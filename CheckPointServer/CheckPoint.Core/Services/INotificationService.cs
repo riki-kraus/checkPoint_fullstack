@@ -11,5 +11,9 @@ namespace CheckPoint.Core.Services
         Task<Notification> CreateNotificationAsync(NotificationDto dto);
         Task NotifyAllAsync(Notification message);
         Task NotifyUserAsync(string userId, Notification message);
+        Task<Notification> MarkAsReadAsync(int id);
+         Task DeleteByIdAsync(int id);
+
+
     }
 }

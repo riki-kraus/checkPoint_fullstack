@@ -13,6 +13,7 @@ namespace CheckPoint.Data.Repositories
         public IAnswerRepository Answers { get; }
         public IExamRepository Exams { get; }
         public ISubmissionRepository Submissions { get; }
+        public INotificationRepository Notifications { get; }
         //public IManagerRepository Managers { get; }
         //public IStudentRepository Students { get; }
         public IUserRepository Users { get; }

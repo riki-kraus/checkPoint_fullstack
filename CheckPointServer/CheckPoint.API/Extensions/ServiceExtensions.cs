@@ -9,7 +9,7 @@ using CheckPoint.Service;
 using Microsoft.EntityFrameworkCore;
 using CheckPoint.Service.YourApp.Infrastructure.Services;
 using CheckPoint.API.Dispatchers;
-using CheckPoint.Core.Repositories;
+
 using CheckPoint.Infrastructure.Repositories;
 
 

@@ -59,6 +59,7 @@ using CheckPoint.API;
 using CheckPoint.Core.DTOs;
 using CheckPoint.Core.Entities;
 using CheckPoint.Core.Services;
+using CheckPoint.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
@@ -94,6 +95,22 @@ public class NotificationController : ControllerBase
 
         var created = await _notificationService.CreateNotificationAsync(dto);
         return CreatedAtAction(nameof(GetAll), new { id = created.Id }, created);
+    }
+
+    [HttpPut("{id}/mark-as-read")]
+    public async Task<IActionResult> MarkAsRead(int id)
+    {
+
+        var created = await _notificationService.MarkAsReadAsync(id);
+        return Ok(created);
+    }
+
+
+    [HttpDelete("{id}")]
+    public async Task DeleteAsync(int id)
+    {
+        await _notificationService.DeleteByIdAsync(id);
+
     }
     //[HttpPost("broadcast")]
     //public async Task<IActionResult> Broadcast([FromBody] Notification message)

@@ -1,15 +1,16 @@
 
 
-import React, { useCallback, useState } from 'react';
+import  { useCallback, useState } from 'react';
 import { Bell, Check, CheckCircle, Info, AlertTriangle, Trash2, X } from 'lucide-react';
 import '../styles/AdminNotifications.css';
 import { useSignalR } from '../services/SignalRService';
 import { NotificationAdmin, NotificationType } from '../Types';
-
+import { NotificationService } from '../services/NotificationService';
 
 type FilterType = 'all' | 'read' | 'unread';
 
-const AdminNotifications: React.FC = () => {
+
+const AdminNotifications = () => {
   const [notifications, setNotifications] = useState<NotificationAdmin[]>([]);
   const [selectedNotifications, setSelectedNotifications] = useState<number[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ const url=import.meta.env.VITE_API_BASE_URL
         return <AlertTriangle className="notification-icon" />;
       default:
         return <Info className="notification-icon" />;
-    }
+    } 
   };
 
   const formatTimeAgo = (date: Date): string => {
@@ -50,26 +51,75 @@ const url=import.meta.env.VITE_API_BASE_URL
     return `לפני ${days} ימים`;
   };
 
-  const markAsRead = (id: number) => {
+  // const markAsRead = (id: number) => {
+    
+  //   setNotifications(prev =>
+  //     prev.map(n => (n.id === id ? { ...n, read: true } : n))
+  //   );
+  // };
+  const markAsRead = async (id: number) => {
+    console.log("markAsRead called with id:", id);
     setNotifications(prev =>
       prev.map(n => (n.id === id ? { ...n, read: true } : n))
     );
+    try {
+      await NotificationService.markAsRead(id);
+    } catch (e) {
+      console.error("שגיאה בסימון כהתראה נקראה", e);
+    }
   };
-
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  
+  // const markAllAsRead = () => {
+  //   setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  // };
+  const markAllAsRead = async () => {
+    const unreadIds = notifications.filter(n => !n.read && n.id !== undefined).map(n => n.id!);
+  
+    setNotifications(prev =>
+      prev.map(n => ({ ...n, read: true }))
+    );
+  
+    for (const id of unreadIds) {
+      try {
+        await NotificationService.markAsRead(id);
+      } catch (e) {
+        console.error(`שגיאה בסימון כהתראה נקראה עבור id=${id}`, e);
+      }
+    }
   };
-
-  const deleteNotification = (id: number) => {
+  
+  // const deleteNotification = (id: number) => {
+  //   setNotifications(prev => prev.filter(n => n.id !== id));
+  //   setSelectedNotifications(prev => prev.filter(nId => nId !== id));
+  // };
+  const deleteNotification = async (id: number) => {
     setNotifications(prev => prev.filter(n => n.id !== id));
     setSelectedNotifications(prev => prev.filter(nId => nId !== id));
+    try {
+      await NotificationService.delete(id);
+    } catch (e) {
+      console.error("שגיאה במחיקת התראה", e);
+    }
   };
-
-  const deleteSelected = () => {
-    setNotifications(prev => prev.filter(n => n.id&&!selectedNotifications.filter(Boolean).includes(n.id)));
+  
+  // const deleteSelected = () => {
+  //   setNotifications(prev => prev.filter(n => n.id&&!selectedNotifications.filter(Boolean).includes(n.id)));
+  //   setSelectedNotifications([]);
+  // };
+  const deleteSelected = async () => {
+    const toDelete = [...selectedNotifications];
+    setNotifications(prev => prev.filter(n => !toDelete.includes(n.id!)));
     setSelectedNotifications([]);
+  
+    for (const id of toDelete) {
+      try {
+        await NotificationService.delete(id);
+      } catch (e) {
+        console.error(`שגיאה במחיקת התראה עם id=${id}`, e);
+      }
+    }
   };
-
+  
   const toggleSelection = (id: number) => {
     setSelectedNotifications(prev =>
       prev.includes(id) ? prev.filter(nId => nId !== id) : [...prev, id]
