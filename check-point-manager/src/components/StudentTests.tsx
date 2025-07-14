@@ -100,6 +100,38 @@ const StudentTests = () => {
             allMarks.push(newMark);
             allAnswers.push(answer);
             allStudents.push(student);
+            const email = await StudentSheetService.getStudentEmail(student.firstName, student.lastName, student.class);
+            await EmailService.sendAnEmail(
+              `הי ${student.firstName} ${student.lastName}!`,
+              email,
+              `
+              <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5; color: #333;">
+                <h2 style="color: #2c3e50;">📢 התקבל מבחן חדש במערכת!</h2>
+                <p>
+                  אנו שמחים לעדכן אותך כי התקבל מבחן חדש במקצוע:
+                  <strong style="color: #007bff;">${exam.subject}</strong>.
+                </p>
+            
+                ${
+                  typeof exam.grade === 'number'
+                    ? `<p>ציון המבחן שלך הוא:
+                        <strong style="color: #28a745; font-size: 18px;">${exam.grade}</strong>
+                      </p>`
+                    : ''
+                }
+            
+                <p>לצפייה במבחן ולהמשך תהליך הלמידה, היכנס למערכת דרך הקישור הבא:</p>
+            
+                <a href="https://checkpoint-client-pi2r.onrender.com"
+                   style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                   מעבר למערכת
+                </a>
+            
+                <p style="margin-top: 30px;">בהצלחה רבה!<br/>צוות CheckPoint</p>
+              </div>
+              `
+            );
+            
           }
 
           catch (e: any) {

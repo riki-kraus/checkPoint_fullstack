@@ -83,7 +83,7 @@
               "RelativeDocumentMoniker": "CheckPoint.API\\NotificationHub .cs",
               "ToolTip": "C:\\Users\\User\\Documents\\next\\CheckPointServer\\CheckPoint.API\\NotificationHub .cs",
               "RelativeToolTip": "CheckPoint.API\\NotificationHub .cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAswCAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-13T20:33:52.563Z",
               "EditorCaption": ""
@@ -122,8 +122,7 @@
               "RelativeToolTip": "CheckPoint.API\\SignalRNotificationDispatcher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T14:47:54.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T14:47:54.836Z"
             },
             {
               "$type": "Document",
@@ -267,8 +266,7 @@
               "RelativeToolTip": "CheckPoint.API\\Extensions\\ServiceExtensions.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T00:00:24.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T00:00:24.772Z"
             }
           ]
         }

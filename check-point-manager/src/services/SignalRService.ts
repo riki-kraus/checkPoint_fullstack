@@ -16,7 +16,13 @@ import { NotificationAdmin } from "../Types";
 
 export function useSignalR(onMessage: (message: NotificationAdmin) => void, hubUrl: string) {
   const connectionRef = useRef<HubConnection | null>(null);
-
+  const playNotificationSound = () => {
+    const audio = new Audio('/sounds/notification.mp3');
+    audio.play().catch(err => {
+      console.warn("🔇 שגיאה בניסיון להשמיע צליל:", err);
+    });
+  };
+  
   useEffect(() => {
     const fetchNotificationsAndSetupConnection = async () => {
       // שליפה ראשונית של כל ההתראות מהשרת
@@ -43,6 +49,7 @@ export function useSignalR(onMessage: (message: NotificationAdmin) => void, hubU
 
       // האזנה להתראות חדשות
       connection.on("ReceiveNotification", (message: NotificationAdmin) => {
+        playNotificationSound(); // ← השמעת הצליל
         onMessage(message);
       });
     };

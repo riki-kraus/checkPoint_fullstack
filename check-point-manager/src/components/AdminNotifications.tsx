@@ -44,7 +44,8 @@ const url=import.meta.env.VITE_API_BASE_URL
     const minutes = Math.floor(diff / (1000 * 60));
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
+       console.log(`diff: ${diff}, minutes: ${minutes}, hours: ${hours}, days: ${days}`);
+       
     if (minutes < 1) return `לפני רגע`;
     if (minutes < 60) return `לפני ${minutes} דקות`;
     if (hours < 24) return `לפני ${hours} שעות`;
