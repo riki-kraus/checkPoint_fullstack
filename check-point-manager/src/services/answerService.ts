@@ -18,8 +18,6 @@ export const AnswerService = {
     {
         try {
             const res = await axiosInstance.get(`/Answer/examId/${examId}`);
-       
-            console.log(res.data)
             return res.data;
         } catch (e: any) {
             handleAxiosError(e, "הבאת התשובות נכשלה");
@@ -30,8 +28,6 @@ export const AnswerService = {
     {
         try {
             const res = await axiosInstance.delete(`/Answer/examId/${examId}`)          
-            //console.log(res.data)
-            alert("התשובה נמחקה בהצלחה");
 
             return res.data;
         } catch (e: any) {

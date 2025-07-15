@@ -34,9 +34,7 @@ const ResultTests = () => {
           const exam = extractExam(words);
 
           const savedExam = await ExamService.create(exam);
-console.log("yay")
           const answers = extractAnswers(words, savedExam);
-          console.log("answers:", answers);
 
           await Promise.all(
             answers.map((a) =>
@@ -83,7 +81,6 @@ console.log("yay")
 
     const filteredExams = results.filter((exam): exam is Exam => exam !== null);
     setExams(filteredExams);
-    console.log("מבחנים שנשמרו:", filteredExams);
 
     setTimeout(() => {
       setIsProcessing(false);
@@ -91,17 +88,10 @@ console.log("yay")
       setIsAbleNext(true)
     }, 1000);
   };
-  // useEffect(() => {
-   
-  //   if (hasProcessed || selectedImages.length === 0) return;
-  //   console.log("r")
-  //   setHasProcessed(true);
-  //   processAllExams();
-  // }, [selectedImages]);
+
 
   useEffect(() => {
     if (hasProcessedRef.current || selectedImages.length === 0) return;
-    console.log("r")
 
     hasProcessedRef.current = true;
     processAllExams();

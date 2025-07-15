@@ -25,7 +25,6 @@ const GoogleLogin = ({ onSuccessLogin }: GoogleLoginProps) => {
       const token = response.credential;
       const decodedGoogle: any = jwtDecode(token);
       const profile:Profile={email:decodedGoogle.email,name:decodedGoogle.name,picture:decodedGoogle.picture}
-      console.log(profile)
       localStorage.setItem("profile", JSON.stringify(profile));
       try {
         const res = await axiosInstance.post(

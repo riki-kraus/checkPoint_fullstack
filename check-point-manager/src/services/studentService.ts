@@ -38,10 +38,7 @@ export const StudentService = {
 
     },
     getByFullNameAndClass: async (ClassName: string, FirstName: string, LastName: string) => {
-        console.log(ClassName)
-        console.log(FirstName)
-
-        console.log(LastName)
+       
         try {
             const res = await axiosInstance.get(`/Student/byFullName`, {
                 params: {
@@ -50,7 +47,6 @@ export const StudentService = {
                     ClassName // שים לב לשינוי כאן
                 }
             });
-            console.log("ה גדול")
             return res.data;
         } catch (e: any) {
             console.error(`Error fetching student ${FirstName} ${LastName} from class ${ClassName}:`, e);
@@ -62,7 +58,6 @@ export const StudentService = {
     create: async (student: Partial<Student>) => {
         try {
             const res = await axiosInstance.post('/Student', student);
-            alert("המשתמש נוסף בהצלחה");
             return res.data;
         } catch (e: any) {
             handleAxiosError(e, "הוספת המשתמש נכשלה");
@@ -73,7 +68,6 @@ export const StudentService = {
     update: async (id: number, student: Partial<Student>) => {
         try {
             const res = await axiosInstance.put(`/Student/${id}`, student);
-            alert("הפרטים התעדכנו בהצלחה");
             return res.data;
         } catch (e: any) {
             handleAxiosError(e, "עדכון הפרטים נכשל");
@@ -84,7 +78,6 @@ export const StudentService = {
     delete: async (id: number) => {
         try {
             const res = await axiosInstance.delete(`/Student/${id}`);
-            alert("המשתמש נמחק בהצלחה");
             return res.data;
         } catch (e: any) {
             handleAxiosError(e, "המחיקה נכשלה");

@@ -28,7 +28,6 @@ const ScannedTestsGallery = () => {
     try {
       const exams = await ExamService.getAll();
       setTestImages(exams);
-      console.log('exams', exams.data);
       const subjectsList: string[] = Array.from(
         new Set(exams.map((img: { subject: string; }) => String(img.subject)))
       );

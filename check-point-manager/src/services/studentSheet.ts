@@ -5,7 +5,6 @@ import { NotificationService } from "./NotificationService";
 export const StudentSheetService = {
 
     getStudentEmail: async (firstName: string, lastName: string, className: string) => {
-        console.log("Fetching email for:", firstName, lastName, className);
         try {
             const res = await axiosInstance.get(`/Sheet/email`, {
                 params: {
@@ -14,11 +13,9 @@ export const StudentSheetService = {
                     className
                 }
             });
-            console.log("Email found:", res.data.email);
             return res.data.email;
         } catch (e: any) {
             if (e.response && e.response.status === 404) {
-                // alert("התלמידה לא נמצאה");
                   NotificationService.create({
                             title: "hoops! ",
                             message: "the student was not found",

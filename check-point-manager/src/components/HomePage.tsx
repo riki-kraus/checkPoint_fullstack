@@ -71,24 +71,6 @@ useEffect(() => {
     setIsLoggedIn(true);
   }
 }, [localStorage.getItem('token')]);
-  // const showLoginModal = () => {
-  //   setIsLoginModalOpen(true);
-  // };
-
-  // const handleLoginCancel = () => {
-  //   setIsLoginModalOpen(false);
-  // };
-
-  // const responseGoogle = (response: any) => {
-  //   console.log("Google login response:", response);
-  //   setIsLoginModalOpen(false);
-  //   api.success({
-  //     message: 'התחברת בהצלחה עם Google',
-  //     description: 'ברוך הבא למערכת ExamAI!',
-  //     placement: 'topRight',
-  //     className: 'rtl-notification',
-  //   });
-  // };
 
   useEffect(() => {
     const interval = setInterval(() => {

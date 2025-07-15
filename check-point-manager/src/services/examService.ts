@@ -7,7 +7,6 @@ export const ExamService = {
     getAll: async () => {
         try {
             const res = await axiosInstance.get('/Exam');
-            console.log("Exams fetched successfully:", res.data);
             return res.data;
         } catch (e: any) {
             console.error("Error fetching exams:", e);
@@ -16,10 +15,8 @@ export const ExamService = {
     },
 
     create: async (exam: Partial<Exam>) => {
-        console.log(exam)
         try {
             const res = await axiosInstance.post('/Exam', exam);
-            alert("המבחן נוסף בהצלחה");
             return res.data;
         } catch (e: any) {
             handleAxiosError(e, "הוספת המבחן נכשלה");
@@ -47,7 +44,6 @@ export const ExamService = {
     delete: async (id: number|undefined) => {
         try {
             const res = await axiosInstance.delete(`/Exam/${id}`);
-            alert("המבחן נמחק בהצלחה");
             return res.data;
         } catch (e: any) {
             handleAxiosError(e, "המחיקה נכשלה");

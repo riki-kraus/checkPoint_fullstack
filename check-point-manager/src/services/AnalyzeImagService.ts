@@ -8,7 +8,6 @@ import axiosInstance from "../utils/axiosInstance";
 export const analyzeImage = async (base64Image: string) => {
   try {
     const response = await axiosInstance.post(`/Ocr/analyze-image`, { base64Image: base64Image });
-    console.log(response.data);
     return response.data.responses[0]?.textAnnotations.slice(1) || null;
   } catch (error: any) {
   

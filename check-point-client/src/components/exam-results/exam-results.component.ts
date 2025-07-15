@@ -149,11 +149,9 @@ export class ExamResultsComponent implements OnInit {
   }
 
   downloadDocument(document: Document) {
-    console.log('Downloading:', document.name);
   }
 
   viewDocument(document: Document) {
-    console.log('Viewing:', document.name);
   }
 
   onButtonHover(state: 'idle' | 'hover') {

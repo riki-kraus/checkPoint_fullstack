@@ -66,7 +66,6 @@ const StudentTests = () => {
           const tempExam = extractExam(words);
           const exam = await ExamService.getBySubjectAndDate(tempExam.dateExam, tempExam.subject);
           const answers = extractAnswers(words, exam);
-          console.log(words);
           const student = extractStudent(words);
           const fetchedAnswers = await AnswerService.getByExamId(exam.id);
           let newMark = 100;
@@ -135,7 +134,6 @@ const StudentTests = () => {
           }
 
           catch (e: any) {
-            console.log("the pupil is not exist");
                NotificationService.create({
                         title: "this pupil is not registered",
                         message: "please remember check the pupil's test when she register",
@@ -143,18 +141,13 @@ const StudentTests = () => {
                         priority: "high",
                        timestamp: new Date(),
                       });
-            // הסר את הקובץ מהקבצים בצורה תקינה
             updatedFiles[i] = null;
-            // הוסף לסטודנטים שלא רשומים
             notRegisteredStudents.push({
               firstName: student.firstName,
               lastName: student.lastName
             });
-            // שלח מייל
-            console.log("Email to send:", student);
 
             const email = await StudentSheetService.getStudentEmail(student.firstName, student.lastName, student.class);
-            console.log("Email to send:", email);
             await EmailService.sendAnEmail(
               ` הי ${student.firstName} ${student.lastName}!`,
               email,

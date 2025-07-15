@@ -14,11 +14,9 @@ const StudentScoresModal = ({ open, onClose ,currentStudent}: any) => {
     const [student, setStudent] = useState<Student | null>(null);
     const [submissions, setSubmissions] = useState<any[]>([]);
     useEffect(() => {
-        console.log(open)
         const fetchData = async () => {
             setStudent(currentStudent);
             const submissionData = await SubmissionService.getByStudentId(Number(currentStudent.id));
-            console.log(submissionData)
             const formatted = Array.isArray(submissionData) ? submissionData : [submissionData];
             setSubmissions(formatted);
         };
@@ -33,7 +31,6 @@ const StudentScoresModal = ({ open, onClose ,currentStudent}: any) => {
             setPreviewUrl(response.data.url);
         } catch (error) {
             console.error("שגיאה בקבלת הקישור:", error);
-            alert("אירעה שגיאה בעת ניסיון לפתוח את הקובץ.");
         }
     };
 

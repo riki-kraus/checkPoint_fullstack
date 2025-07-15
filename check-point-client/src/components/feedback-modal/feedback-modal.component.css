@@ -1,4 +1,4 @@
-/* Modal Backdrop */
+
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -14,7 +14,6 @@
     padding: 1rem;
 }
 
-/* Modal Container */
 .modal-container {
     background: rgba(30, 41, 59, 0.95);
     border: 1px solid rgba(71, 85, 105, 0.3);
@@ -40,7 +39,6 @@
     background: linear-gradient(90deg, #f59e0b, #f97316);
 }
 
-/* Modal Header */
 .modal-header {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid rgba(71, 85, 105, 0.3);
@@ -87,7 +85,6 @@
     gap: 0.75rem;
 }
 
-/* Action Buttons in Header */
 .download-btn {
     background: rgba(245, 158, 11, 0.1);
     border: 1px solid rgba(245, 158, 11, 0.3);
@@ -136,7 +133,6 @@
     color: #ef4444;
 }
 
-/* Icons */
 .download-icon {
     width: 16px;
     height: 16px;
@@ -161,7 +157,6 @@
     mask-size: contain;
 }
 
-/* Modal Body */
 .modal-body {
     flex: 1;
     overflow: auto;
@@ -169,7 +164,6 @@
     min-height: 400px;
 }
 
-/* Loading State */
 .loading-container {
     display: flex;
     flex-direction: column;
@@ -199,7 +193,6 @@
     }
 }
 
-/* Error State */
 .error-container {
     display: flex;
     flex-direction: column;
@@ -252,7 +245,6 @@
     border-color: rgba(245, 158, 11, 0.5);
 }
 
-/* Image Container */
 .image-container {
     position: relative;
     width: 100%;
@@ -291,7 +283,6 @@
     cursor: grabbing;
 }
 
-/* Modal Footer */
 .modal-footer {
     padding: 1.5rem 2rem;
     border-top: 1px solid rgba(71, 85, 105, 0.3);
@@ -357,7 +348,6 @@
     cursor: not-allowed;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .modal-backdrop {
         padding: 0.5rem;
@@ -420,7 +410,6 @@
     }
 }
 
-/* Custom Scrollbar for Modal Body */
 .modal-body::-webkit-scrollbar {
     width: 8px;
 }

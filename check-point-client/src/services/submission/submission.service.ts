@@ -18,7 +18,6 @@ export class SubmissionService {
   
   
   getSubmissionByStudentId(studentId: number): Observable<Submission[]> {
-    console.log("ff")
     return this.http.get<Submission[]>(`/Submission/StudentId/${studentId}`);
 
   }

@@ -100,12 +100,6 @@ export const uploadAllWordFiles = async ({
   answers,
   signature,
 }: UploadAllProps) => {
-  console.log("exams")
-
-  console.log(exams)
-  console.log(students)
-  console.log(marks)
-  console.log(answers)
 
   if (
     !exams ||
@@ -159,7 +153,6 @@ export const uploadAllWordFiles = async ({
         },
       });
 
-      console.log(`✅ ${fileName} הועלה בהצלחה`);
     }
 
     alert("כל קבצי ה־Word הועלו בהצלחה ל־S3!");

@@ -54,10 +54,6 @@ export const extractExam = (words: any[]): Exam => {
       const next = reversed[i - 1];
 
       if (/^[א-ת]$/.test(val) && next === ".") {
-        // if (/^[א-ת]$/.test(val) ) {
-console.log("val",val);
-console.log("next",next);
-
         return val;
       }
     }
@@ -91,7 +87,6 @@ export const extractStudent=(res:any)=>
   
 }
   export const extractAnswers = (words: any[], exam: Exam | undefined) => {
-    console.log("hi")
     const textArray = words.map(w => w.description);
     const results = [];
 
@@ -101,9 +96,6 @@ export const extractStudent=(res:any)=>
         if (['/', '^', '\\', '|'].includes(correctAnswer)) correctAnswer = '1';
         if (correctAnswer === 's') correctAnswer = '5';
         const examId = exam?.id;
-        console.log("textArray")
-        console.log(textArray)
-
         results.push({
           examId,
           section: findSectionLetter(textArray, i),
@@ -111,12 +103,10 @@ export const extractStudent=(res:any)=>
         });
       }
     }
-    console.log("Extracted answers:", results);
     return results;
   };
 
   export const Analyze = async ( selectedImage:string) => {
-    console.log("Analyzing image:", selectedImage);
     if (!selectedImage) return;
     try {
       const words = await analyzeImage(selectedImage);

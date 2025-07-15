@@ -27,7 +27,6 @@ export function useSignalR(onMessage: (message: NotificationAdmin) => void, hubU
     const fetchNotificationsAndSetupConnection = async () => {
       // שליפה ראשונית של כל ההתראות מהשרת
       const data: NotificationAdmin[] = await NotificationService.getAll();
-      console.log("Fetched notifications:", data);
       data.forEach(notification => {
         onMessage(notification);
       });
@@ -43,7 +42,6 @@ export function useSignalR(onMessage: (message: NotificationAdmin) => void, hubU
 
       connection.start()
         .then(() => {
-          console.log("✅ SignalR connected");
         })
         .catch(err => console.error("❌ SignalR connection error:", err));
 

@@ -1,4 +1,3 @@
-/* Variables */
 
 .document-name {
   font-weight: 700;
@@ -57,7 +56,6 @@
   box-shadow: var(--shadow);
 }
 
-/* Feedback */
 .feedback-container {
   max-width: 900px;
   margin: 0 auto;
@@ -98,7 +96,6 @@
   margin-bottom: 0;
 }
 
-/* Appeal Dialog */
 .overlay {
   position: fixed;
   top: 0;
@@ -274,7 +271,6 @@
   box-shadow: none;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .content-grid,
   .documents-grid {

@@ -72,11 +72,9 @@ const Upload_s3= () => {
       await Promise.all(uploadPromises.filter(Boolean));
       setUploadComplete(true);
       setTimeout(() => {
-        alert("✅ כל הקבצים הועלו בהצלחה!");
-        //send email
         
         setIsAbleNext(true);
-        setFiles([]); // Clear files after upload
+        setFiles([]); 
       }, 500);
     } catch (error) {
       console.error("❌ שגיאה בהעלאה:", error);

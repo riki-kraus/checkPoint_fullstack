@@ -57,7 +57,6 @@ const StudentDetailsModal: React.FC<StudentModalProps> = ({ open, onClose, stude
 
     const handleSubmit = async () => {
         try {
-            console.log("Submitting:", formData);
 
             // const url = student ? `${apiUrl}/Student/${student.Id}` : `${apiUrl}/Student`;
             // const method = student ? axios.put : axios.post;

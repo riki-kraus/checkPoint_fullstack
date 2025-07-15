@@ -4,10 +4,7 @@ const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 
 });
-console.log("env:", import.meta.env);
-console.log("Base URL:", import.meta.env.VITE_API_URL);
 
-// Interceptor לפני שליחת הבקשה (כמו Angular interceptor)
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");

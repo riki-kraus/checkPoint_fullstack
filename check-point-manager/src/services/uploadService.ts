@@ -35,11 +35,7 @@ export const uploadFileToS3 = async (
   student?: any,
   onProgress?: (percent: number) => void
 ): Promise<{ success: boolean; fileName: string }> => {
-  console.log(file)
-  console.log(exam)
-
-  console.log(student)
-
+ 
   const fileExtension = file?.name.split(".").pop();
   const finalFileName = `${exam?.dateExam || `file_${Math.random()}`}.${fileExtension}`;
 
@@ -67,7 +63,6 @@ export const uploadFileToS3 = async (
         }
       },
     });
-console.log(presignedUrl)
     return { success: true, fileName: finalFileName };
   } catch (error) {
     console.error("❌ שגיאה בהעלאה:", error);
@@ -78,15 +73,11 @@ console.log(presignedUrl)
       priority: "high",
      timestamp: new Date(),
     });
-    console.log(await axiosInstance.get("/upload/presigned-url", {
-      params,
-    }))
-//להוריד
+
     throw new Error("אירעה שגיאה במהלך ההעלאה.");
   }
 };
 
-// 📥 הורדת קובץ מ-S3
 export const downloadFileFromS3 = async (
   fileName: string,
   exam: any,

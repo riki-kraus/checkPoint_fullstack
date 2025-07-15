@@ -13,13 +13,10 @@ interface LoginResponse {
 
 export const LoginService = {
   login: async (data: any): Promise<LoginResponse> => {
-    console.log("Attempting to login with data:", data);
     try {
       const res = await axiosInstance.post("/Auth", data);
 
       const token = res.data.token;
-      console.log("Token received:", token);
-
       const decoded: any = jwtDecode(token);
       const role = decoded["role"] || decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
